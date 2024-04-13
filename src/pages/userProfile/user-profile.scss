@@ -1,0 +1,29 @@
+@import '../../app/styles/index.scss';
+
+.user-profile {
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  .user-card {
+
+
+    &__photo {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    &__table {
+      width: 100%;
+      max-width: 980px;
+
+    }
+
+  }
+}

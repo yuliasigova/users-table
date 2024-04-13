@@ -1,0 +1,20 @@
+@import '../../app/styles/index.scss';
+
+.sort {
+  display: flex;
+  justify-content: space-between;
+  border: green 1px solid;
+
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    margin-right: 20px;
+  }
+
+  &__link {
+    color: inherit;
+
+  }
+}

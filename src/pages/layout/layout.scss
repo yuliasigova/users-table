@@ -1,0 +1,29 @@
+@import '../../app/styles/index.scss';
+
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  padding: 20px 30px;
+  background: $color-gainsboro;
+
+  &__link {
+    color: $color-default-black;
+    font-weight: 500;
+  }
+}
+
+.footer {
+  background: $color-eclipse;
+  padding: 30px 0;
+  min-height: 50px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+main {
+  flex-grow: 1;
+  padding-top: 90px;
+}

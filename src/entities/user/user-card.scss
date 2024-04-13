@@ -1,0 +1,28 @@
+@import '../../app/styles/index.scss';
+
+.user-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__table {
+    margin: 20px 0;
+    padding: 20px 10px;
+    background: $color-white-smoke;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  &__value {
+    margin: 0;
+  }
+}
