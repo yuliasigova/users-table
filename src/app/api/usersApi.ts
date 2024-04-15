@@ -16,14 +16,18 @@ export const usersApi = createApi({
                     params: {sort, ...UserSearch}
                 }
             },
-            providesTags: (result, error, arg) => ['Users']
+         
+            providesTags: (result, error, arg) =>
+                result
+                 // @ts-ignore
+                  ? [...result.map(({ id } ) => ({ type: 'Users' as const, id })), 'Users']
+                  : ['Users'],
         }),
 
         getProfile: builder.query({
             query: (id) =>({
                 url: `/view?id=${id}`
             }),
-            // providesTags: (result, error, arg) => [{ type: 'Users', id:arg}]
             providesTags: ['Users']
         }),
 
@@ -53,7 +57,7 @@ export const usersApi = createApi({
                     body: formData,
                 }
             },
-            invalidatesTags: (result, error, arg) => [{ type: 'Users', id: arg }]
+            invalidatesTags: ['Users']
         }),
         getFoodList: builder.query({
             query: () =>`get-food-list`,
