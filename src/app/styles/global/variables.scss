@@ -1,13 +1,19 @@
 $color-default-black:               #000000;
 $color-default-white:               #ffffff;
 $color-transparent:                 rgba(255, 255, 255, 0);
-$color-gray:                        #b3b3b3;
+$color-default-black-60:            rgba(0, 0, 0, 0.6);
+$color-alice-blue:                  #F4F7F8;
 $color-eclipse:                     #363636;
+$color-persian-red:                 #e02323;
+$color-navy-blue:                   #1976d2;
+$color-gray:                        #b3b3b3;
 $color-gainsboro:                   #d9d9d9;
-$color-alice-blue:                  #eaf0f3;
 $color-white-smoke:                 #f2f2f2;
-$color-light-grey:                  #cccccc;
+
 
 
 $fz-default:                        1rem;
 $ff-roboto:                         "Roboto", "Arial", sans-serif;
+
+$tf-default:                        ease;
+$trans-default:                     0.3s $tf-default;

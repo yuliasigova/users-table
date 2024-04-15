@@ -1,7 +1,7 @@
 import { ReactNode} from "react";
 import {User} from "./user";
-import {useGetFoodListQuery} from "../../app/api/usersApi";
 import {ImageAvatar} from "../../shared/imageAvatar/ImageAvatar";
+import { useFoodsList } from "../../shared/hooks/useFoodsList";
 import './user-card.scss'
 
 type Props = {
@@ -10,28 +10,31 @@ type Props = {
 }
 export function UserInfo({user, children}: Props) {
     const {id, username, email, favorite_food_ids, photo_id, birthdate} = user;
-    // const {data: foodList} = useGetFoodListQuery('')
-    // const foods = favorite_food_ids.map(food => foodList && foodList[food]).join(', ')
+    const foodList = useFoodsList()
 
+    const foods = favorite_food_ids?.map(food => foodList && foodList[food]).join(', ')
+    
     return (
     <article className={'user-card'}>
 
         <ImageAvatar className={'user-card__photo'} width={150} height={150} photoId={photo_id}></ImageAvatar>
-
+        <div className="user-card__wrapper">
         <dl className={'user-card__table'}>
-            <dt> ID </dt>
+            <dt className={'user-card__name'}> ID </dt>
             <dd className={'user-card__value'}>{id}</dd>
-            <dt> Имя </dt>
+            <dt className={'user-card__name'}> Имя </dt>
             <dd className={'user-card__value'}>{username}</dd>
-            <dt> Email </dt>
-            <dd className={'user-card__value'}>{email}</dd>
-            <dt> Дата рождения </dt>
+            <dt className={'user-card__name'}> Email </dt>
+            <dd className={'user-card__value user-card__value--email'}>{email}</dd>
+            <dt className={'user-card__name'}> Дата рождения </dt>
             <dd className={'user-card__value'}>{birthdate}</dd>
-            <dt > Любимая еда </dt>
-            {/* <dd className={'user-card__value'}>{foods}</dd> */}
+            <dt className={'user-card__name'}> Любимая еда </dt>
+            <dd className={'user-card__value'}>{foods}</dd>
         </dl>
 
         {children}
+        </div>
+       
 
     </article>)
 }

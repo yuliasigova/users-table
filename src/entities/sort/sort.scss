@@ -3,18 +3,43 @@
 .sort {
   display: flex;
   justify-content: space-between;
-  border: green 1px solid;
+  align-items: center;
+  margin-bottom: 50px;
+
+  &__title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: $color-default-black
+  }
 
   &__list {
     display: flex;
+    margin: 0;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
   &__item {
     margin-right: 20px;
+
+    &:last-child {
+    margin-right: 0;
+    }
   }
 
   &__link {
-    color: inherit;
+    color: $color-eclipse;
+    font-weight: 400;
 
+    &:hover,
+    &:focus {
+      color: #1976d2;
+      transition: color $trans-default;
+    }
+    
+    &--active {
+      color: #1976d2;
+    }
   }
 }

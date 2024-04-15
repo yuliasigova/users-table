@@ -1,16 +1,8 @@
 import {TextField, InputLabel} from "@mui/material";
 import { Controller, } from "react-hook-form";
+import { Input } from "./types";
 
-
-type Search = {
-    name: string,
-    label?: string | undefined,
-    type: string,
-    control: any,
-    placeholder?: string,
-}
-
-export function TextInput({name, label, type, control, placeholder}: Search) {
+export function TextInput({name, label, type, control, value}: Input) {
 
     return (
         <>
@@ -18,9 +10,9 @@ export function TextInput({name, label, type, control, placeholder}: Search) {
                 name={name}
                 control={control}
                 render={({
-                             field: { onChange, value },
+                             field: { onChange, value},
                              fieldState: { error }
-
+                           
                          }) => (
                     <>
                         <InputLabel>{label}</InputLabel>
@@ -29,15 +21,18 @@ export function TextInput({name, label, type, control, placeholder}: Search) {
                             helperText={error ? error.message : null}
                             error={!!error}
                             onChange={onChange}
-                            value={value}
                             placeholder={label}
                             variant="outlined"
                             type={type}
                             fullWidth
+                            margin='normal'
+                            inputProps={
+                               { value: value}}
                         />
                     </>
                 )}
-                />
-                        </>
+            />
+                
+        </>
     )
 }

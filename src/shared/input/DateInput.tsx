@@ -5,13 +5,11 @@ import {Controller} from "react-hook-form";
 import {InputLabel} from "@mui/material";
 import dayjs from "dayjs";
 import 'dayjs/locale/de';
+import { Input } from "./types";
 
-type DateValues = {
-    name: string,
-    control: any,
-    label: string,
-}
-export function DateInput({ name ,control, label } : DateValues) {
+export function DateInput({ name ,control, label, value } : Input) {
+    console.log(dayjs(new Date()))
+    console.log(dayjs('2019-01-25'))
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
                 <Controller
@@ -20,11 +18,16 @@ export function DateInput({ name ,control, label } : DateValues) {
                     render={({ field: { onChange, value } , fieldState: {error}}) => (
                         <>
                             <InputLabel>{label}</InputLabel>
-                            <DatePicker value={dayjs(value)} onChange={onChange}
+                            <DatePicker onChange={onChange}
                                         views={['day', 'month', 'year']}
+                                       
                                         slotProps={{
                                             textField: {
                                                 helperText: error ? error.message : null,
+                                                // value:  dayjs(value),
+                                                // value: dayjs(dayjs(value).toDate()),
+                                                
+                                                margin:'normal'
                                             },
                                         }}
                                         maxDate={dayjs(new Date())} />

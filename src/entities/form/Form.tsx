@@ -4,40 +4,51 @@ import {DateInput} from "../../shared/input/DateInput";
 import {SelectInput} from "../../shared/input/SelectInput";
 import { yupResolver } from "@hookform/resolvers/yup"
 import {schema} from "./schema";
-import {Button} from "@mui/material";
-import {InputPicture} from "../../shared/input/InputPicture";
+import {InputPicture} from "../../shared/input/inputPicture/InputPicture";
+import './form.scss'
+import { UserForm } from "./userForm";
 
-
-export function RegisterForm ({defaultValues, onSubmit}) {
+type Props = {
+    defaultValues: UserForm,
+    onSubmit: any,
+    photoId?: number | null
     
+}
+
+export function RegisterForm ({defaultValues, onSubmit, photoId}: Props) {
     const {
         handleSubmit,
         control,
-        getValues,
-        register,
         setValue,
         formState:{errors}} = useForm(
         {
             resolver: yupResolver(schema),
-            mode: 'onChange',
+            mode: 'onSubmit',
             defaultValues: defaultValues
         }
-    )
-
+    ) 
     return (
     
         <form onSubmit = {handleSubmit(onSubmit)} className={'form'}>
-            <div className={'form__photo'}>
-               <InputPicture setValue={setValue}/>
+            <InputPicture setValue={setValue} photoId = {photoId}/>
 
-            </div>
-
-            <TextInput type={'text'} name={'username'} label={'Имя'} control={control}/>
-            <TextInput type={'email'} name={'email'} label={'Email'} control={control}/>
-            <DateInput name={'birthdate'} control={control} label={'Дата рождения'}/>
+            <TextInput 
+            type={'text'} name={'username'} label={'Имя'} control={control}
+            value={setValue('username', defaultValues.username)}
+             />
+         
+            <TextInput 
+            value={setValue('email', defaultValues.email)}
+            type={'email'} name={'email'} label={'Email'} control={control}
+            />
+           
+            <DateInput name={'birthdate'} control={control} label={'Дата рождения'}
+            // value={setValue('birthdate', defaultValues.birthdate)}
+            />
+       
             <SelectInput name={'favorite_food_ids'} control={control}></SelectInput>
-
-            <Button variant="contained" type={'submit'} > Отправить </Button>
+         
+            <button className={"btn"} type={'submit'} > Отправить </button>
         </form>
     )
 }

@@ -1,10 +1,10 @@
 @import '../../app/styles/index.scss';
 
 .user-card {
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 310px;
 
   &__photo {
     width: 150px;
@@ -13,16 +13,36 @@
     object-fit: cover;
   }
 
+  &__wrapper {
+    margin-top: 20px;
+    padding: 20px 0;
+    background: $color-default-white;
+    border-radius: 15px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
   &__table {
-    margin: 20px 0;
-    padding: 20px 10px;
-    background: $color-white-smoke;
     display: grid;
+    padding: 0 20px 10px;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: 20px;
+    border-bottom: 1px solid $color-gray;
+    flex-grow: 1;
+  }
+
+  &__name {
+    font-weight: 500;
+    white-space: nowrap;
   }
 
   &__value {
     margin: 0;
+
+    &--email {
+      word-break: break-all;
+    }
+  
   }
 }

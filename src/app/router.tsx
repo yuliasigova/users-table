@@ -4,8 +4,8 @@ import {ChangeProfile} from "../pages/changeProfile/ChangeProfile";
 import {UsersProfile} from "../pages/userProfile/UserProfile";
 import {UsersTable} from "../pages/mainPage/UsersTable";
 import {Layout} from "../pages/layout/Layout";
-import {AppRoute} from "./types";
 import { NotFoundPage } from "../pages/notFound/NotFoundPage";
+import {AppRoute} from "./types";
 
 export const router = createBrowserRouter([
 
@@ -34,4 +34,5 @@ export const router = createBrowserRouter([
                 element: <NotFoundPage/>
             },
             
-]}]);
+    ]}
+]);

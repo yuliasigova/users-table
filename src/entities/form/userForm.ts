@@ -2,8 +2,8 @@ export interface UserForm {
     username: string,
     email:string,
     birthdate: string,
-    favorite_food_ids: (string | undefined)[] | undefined,
-    upload_photo: {  } | null | undefined
+    favorite_food_ids: Array<string>,
+    upload_photo:  Blob | null
 }
 
 export const defaultValues = {

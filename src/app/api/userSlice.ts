@@ -1,9 +1,17 @@
 import { createSlice} from "@reduxjs/toolkit";
 
-type InitialState = {
+type Search = {
+    'UserSearch[id]': string,
+    'UserSearch[username]': string,
+    'UserSearch[email]': string,
+    'UserSearch[birthdateStart]': string,
+    'UserSearch[birthdateEnd]': string
+}
+
+interface InitialState {
     sortType: string,
-    search: {},
-    foodList: {}
+    search: Search,
+    foodList: {[key: string]: string},
 }
 
 export const userSlice = createSlice({

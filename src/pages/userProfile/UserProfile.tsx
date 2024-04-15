@@ -11,7 +11,7 @@ import './user-profile.scss'
 export function UsersProfile ():JSX.Element {
     const {userId} = useParams()
     const id = Number(userId)
-    const {data:user} = useGetProfileQuery(id)
+    const {data:user = {}} = useGetProfileQuery(id)
     const [deleteProfile] = useDeleteProfileMutation();
     const navigate = useNavigate()
 
@@ -23,13 +23,12 @@ export function UsersProfile ():JSX.Element {
     return (
         <main className={'user-profile'}>
             <div className={'container'}>
-
                 {user && <UserInfo user={user}/>}
                 <div className={'user-profile__buttons'}>
                     <Button variant="contained" size='large' href={`/change-profile/${id}`}>Изменить</Button>
                     <Button  variant="contained" size='large' onClick={handleButtonClick}>Удалить</Button>
                 </div>
-
+                
             </div>
         </main>
 

@@ -1,0 +1,13 @@
+@import '../../app/styles/index.scss';
+
+.form-search {
+    margin-top: 27px;
+    display: flex;
+    flex-direction: column;
+
+    &__date {
+        display: block;
+        color: $color-default-black-60;
+        margin: 10px 0;
+    }
+}

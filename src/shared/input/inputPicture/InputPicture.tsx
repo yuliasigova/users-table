@@ -1,55 +1,51 @@
 import React, { useRef, useState, ChangeEvent } from "react";
 import { Button } from "@mui/material";
-import logo from '../../shared/assets/img/user-placeholder.png'
+import logo from '../../assets/img/user-placeholder.png'
+import './input-picture.scss'
 
+export function  InputPicture ( {photoId, setValue}:any) {
 
-export function  InputPicture ({ register, setValue }: any) {
+    const hiddenInputRef:React.MutableRefObject<HTMLInputElement | null>  = useRef(null);
 
-    const hiddenInputRef  = useRef(null);
-
-    // const { ref: registerRef, ...rest } = register("upload_photo");
     const [preview, setPreview] = useState('');
-
+    
     const handleUploadedFile = (evt:ChangeEvent<HTMLInputElement>) => {
 
         const file = evt.target.files?.[0];
-        const urlImage = URL.createObjectURL(file);
+        const urlImage = URL.createObjectURL(file as Blob);
 
         setPreview(urlImage);
-        // hiddenInputRef.current = file
         setValue('upload_photo', file)
     };
 
     const onUpload = () => {
-        hiddenInputRef.current.click();
+        hiddenInputRef.current?.click();
     };
 
     return (
-        <>
-
+        <div className="photo">
             <input
                 type="file"
                 name="upload_photo"
                 className={"visually-hidden"}
-
                 onChange={handleUploadedFile}
-                // ref={(e) => {
-                //     // @ts-ignore
-                //     // registerRef(e);
-                //     hiddenInputRef.current = e;
-                // }
-                // }
                 ref={hiddenInputRef}
-
-
-
             />
+            <div className="photo__wrapper">
+          
 
-            <img src={preview !== '' ? preview : logo} width={150} height={150} alt={'Аватар пользователя'}/>
+           <img src={preview !== '' ? preview : logo} 
+           
+            width={200} 
+            height={200} 
+            alt={'Аватар пользователя'}
+            className="photo__img"/>
+            
+            </div>
+           
             <Button variant="outlined" onClick={onUpload} >
                 Загрузить
             </Button>
-
-        </>
+        </div>
     );
 };

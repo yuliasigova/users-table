@@ -1,7 +1,6 @@
 @import '../../app/styles/index.scss';
 
 .user-profile {
-
   &__buttons {
     display: grid;
     grid-template-columns: 200px 200px;
@@ -10,7 +9,8 @@
   }
 
   .user-card {
-
+    max-width: 60%;
+    margin: 0 auto 50px;
 
     &__photo {
       width: 250px;
@@ -19,11 +19,14 @@
       object-fit: cover;
     }
 
-    &__table {
+    &__wrapper {
       width: 100%;
-      max-width: 980px;
-
+      margin-top: 50px;
     }
 
+    &__table {
+      border: none;
+      padding: 0 50px;
+    }
   }
 }
