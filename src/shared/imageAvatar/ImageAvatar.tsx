@@ -1,13 +1,13 @@
 import logo from '../../shared/assets/img/user-placeholder.png'
 
-type ImageAvatar = {
+interface ImageAvatar {
     className: string,
     width: number,
     height: number;
     photoId?: number | null
 }
 
-const IMG_URL = 'http://tasks.tizh.ru/file/get?id='
+export const IMG_URL = 'http://tasks.tizh.ru/file/get?id='
 
 export function ImageAvatar({className, width, height, photoId}: ImageAvatar) {
     return (

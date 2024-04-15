@@ -17,7 +17,8 @@ export function ChangeProfile ():JSX.Element {
         email: user?.email,
         birthdate: user?.birthdate,
         favorite_food_ids:  Array.isArray(user?.favorite_food_ids) ? user?.favorite_food_ids : [],
-        upload_photo: null
+        upload_photo: null,
+        photo_id: user?.photo_id && user?.photo_id
     } as UserForm
 
     const onSubmit = async (form: UserForm) => {
@@ -29,10 +30,10 @@ export function ChangeProfile ():JSX.Element {
         formData.append('username', username)
         formData.append('birthdate', dayjs(birthdate).format('DD.MM.YYYY'))
         formData.append('email', email)
-     // @ts-ignore
+   
         formData.append('favorite_food_ids', favorite_food_ids)
-        // @ts-ignore
-        formData.append('upload_photo', upload_photo)
+        
+        formData.append('upload_photo', upload_photo as Blob)
       
         const res = await changeProfile({id: id, formData:formData}).unwrap()
         const data = await res
@@ -45,7 +46,7 @@ export function ChangeProfile ():JSX.Element {
                 <RegisterForm 
                 defaultValues={defaultValues} 
                 onSubmit={onSubmit}
-                photoId = {user?.photo_id}/>
+                photoId={defaultValues?.photo_id}/>
             </div>
 
             </main>

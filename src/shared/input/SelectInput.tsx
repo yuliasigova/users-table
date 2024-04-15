@@ -4,17 +4,18 @@ import {MenuItem, Select} from "@mui/material";
 import { Input } from "./types";
 import { useFoodsList } from "../hooks/useFoodsList";
 
-export function SelectInput({name , control, label}: Input) {
+export function SelectInput({name , control, value}: Input) {
     const foodList  = useFoodsList()
     const foodsLabel = foodList && Object.entries(foodList) ;
-
+    console.log(value, foodsLabel)
     return (
         < >
             <InputLabel>Любимая еда</InputLabel>
             <Controller
-                render={({ field: { onChange, value } }) => (
+                render={({ field: { onChange , value} }) => (
                     <Select onChange={(onChange)} 
-                    value={value}    multiple
+                    defaultValue={value }   
+                     multiple
                     >
                       {foodsLabel?.map((option: any) => {
                     return (

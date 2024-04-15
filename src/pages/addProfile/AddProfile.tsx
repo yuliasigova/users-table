@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import {useAddProfileMutation} from "../../app/api/usersApi";
 import {useNavigate} from "react-router-dom";
 
+
 export function AddProfile ():JSX.Element {
     const [addProfile] = useAddProfileMutation();
     const navigate = useNavigate()
@@ -31,7 +32,7 @@ export function AddProfile ():JSX.Element {
             <div className={'container'}>
 
                 <RegisterForm defaultValues={defaultValues} onSubmit={onSubmit}/>
-
+           
             </div>
 
         </main>

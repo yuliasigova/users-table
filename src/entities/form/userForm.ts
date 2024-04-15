@@ -4,6 +4,7 @@ export interface UserForm {
     birthdate: string,
     favorite_food_ids: Array<string>,
     upload_photo:  Blob | null
+    photo_id?: number | null,
 }
 
 export const defaultValues = {

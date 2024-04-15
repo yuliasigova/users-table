@@ -12,7 +12,6 @@ type Props = {
     defaultValues: UserForm,
     onSubmit: any,
     photoId?: number | null
-    
 }
 
 export function RegisterForm ({defaultValues, onSubmit, photoId}: Props) {
@@ -30,7 +29,7 @@ export function RegisterForm ({defaultValues, onSubmit, photoId}: Props) {
     return (
     
         <form onSubmit = {handleSubmit(onSubmit)} className={'form'}>
-            <InputPicture setValue={setValue} photoId = {photoId}/>
+            <InputPicture setValue={setValue} photoId={photoId}/>
 
             <TextInput 
             type={'text'} name={'username'} label={'Имя'} control={control}
@@ -46,7 +45,8 @@ export function RegisterForm ({defaultValues, onSubmit, photoId}: Props) {
             // value={setValue('birthdate', defaultValues.birthdate)}
             />
        
-            <SelectInput name={'favorite_food_ids'} control={control}></SelectInput>
+            <SelectInput name={'favorite_food_ids'} control={control}
+             value={setValue('favorite_food_ids', defaultValues.favorite_food_ids)}></SelectInput>
          
             <button className={"btn"} type={'submit'} > Отправить </button>
         </form>
