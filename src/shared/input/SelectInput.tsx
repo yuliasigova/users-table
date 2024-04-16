@@ -7,7 +7,7 @@ import { useFoodsList } from "../hooks/useFoodsList";
 export function SelectInput({name , control, value}: Input) {
     const foodList  = useFoodsList()
     const foodsLabel = foodList && Object.entries(foodList) ;
-    console.log(value, foodsLabel)
+   
     return (
         < >
             <InputLabel>Любимая еда</InputLabel>

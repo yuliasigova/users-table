@@ -8,8 +8,7 @@ import 'dayjs/locale/de';
 import { Input } from "./types";
 
 export function DateInput({ name ,control, label, value } : Input) {
-    console.log(dayjs(new Date()))
-    console.log(dayjs('2019-01-25'))
+   
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
                 <Controller
@@ -24,9 +23,6 @@ export function DateInput({ name ,control, label, value } : Input) {
                                         slotProps={{
                                             textField: {
                                                 helperText: error ? error.message : null,
-                                                // value:  dayjs(value),
-                                                // value: dayjs(dayjs(value).toDate()),
-                                                
                                                 margin:'normal'
                                             },
                                         }}

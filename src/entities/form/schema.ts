@@ -8,6 +8,6 @@ export const schema = Yup.object().shape({
     email: Yup.string()
         .required('Email обязателен к заполнению')
         .email('Email неверный'),
-    favorite_food_ids: Yup.array().defined(),
+    favorite_food_ids: Yup.array(),
     upload_photo: Yup.mixed().nullable()
 })

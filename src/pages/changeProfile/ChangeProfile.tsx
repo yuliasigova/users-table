@@ -2,42 +2,41 @@ import {RegisterForm} from "../../entities/form/Form";
 import {useParams} from "react-router-dom";
 import { useGetProfileQuery, useUpdateUserMutation} from "../../app/api/usersApi";
 import {UserForm} from "../../entities/form/userForm";
-import dayjs from "dayjs";
 import {useNavigate} from "react-router-dom";
+import { serializeDate } from "../../shared/utils/utils";
 
-export function ChangeProfile ():JSX.Element {
+export function ChangeProfile () {
     const {userId} = useParams()
     const id = Number(userId)
     const {data:user = {}} = useGetProfileQuery(id)
     const navigate = useNavigate()
     const [changeProfile, ] = useUpdateUserMutation();
 
-    const defaultValues = {
+    const defaultValues:UserForm = {
         username: user?.username,
         email: user?.email,
         birthdate: user?.birthdate,
         favorite_food_ids:  Array.isArray(user?.favorite_food_ids) ? user?.favorite_food_ids : [],
         upload_photo: null,
         photo_id: user?.photo_id && user?.photo_id
-    } as UserForm
-
+    }
+    
     const onSubmit = async (form: UserForm) => {
         const {username, birthdate, email, favorite_food_ids, upload_photo} = form
-        form.birthdate = dayjs(birthdate).format('DD.MM.YYYY')
-        form.upload_photo = upload_photo !== null ? upload_photo : null
+        const sirializedBirthday = serializeDate(birthdate)
         const formData = new FormData()
 
         formData.append('username', username)
-        formData.append('birthdate', dayjs(birthdate).format('DD.MM.YYYY'))
+        formData.append('birthdate', sirializedBirthday)
         formData.append('email', email)
-   
-        formData.append('favorite_food_ids', favorite_food_ids)
-        
+        favorite_food_ids.forEach((item) => {
+            formData.append("favorite_food_ids[]", item);
+        });
         formData.append('upload_photo', upload_photo as Blob)
       
         const res = await changeProfile({id: id, formData:formData}).unwrap()
         const data = await res
-        return navigate(`/user/${data.id}`)
+        navigate(`/user/${data.id}`)
     }
     return (
         <main className={'user-change'}>
@@ -49,7 +48,7 @@ export function ChangeProfile ():JSX.Element {
                 photoId={defaultValues?.photo_id}/>
             </div>
 
-            </main>
+        </main>
 
     )
 }
