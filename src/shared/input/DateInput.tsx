@@ -4,34 +4,41 @@ import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {Controller} from "react-hook-form";
 import {InputLabel} from "@mui/material";
 import dayjs from "dayjs";
-import 'dayjs/locale/de';
+import 'dayjs/locale/ru';
 import { Input } from "./types";
 
-export function DateInput({ name ,control, label, value } : Input) {
-   
+
+export function DateInput({ name ,control, label} : Input) {
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
+        <LocalizationProvider dateAdapter={AdapterDayjs}   adapterLocale="ru">
                 <Controller
                     name={name}
                     control={control}
                     render={({ field: { onChange, value } , fieldState: {error}}) => (
+                     
                         <>
                             <InputLabel>{label}</InputLabel>
                             <DatePicker onChange={onChange}
                                         views={['day', 'month', 'year']}
-                                       
-                                        slotProps={{
+                                        defaultValue={dayjs(value as string, "DD.MM.YYYY")}
+                                      
+                                        slotProps={{ 
                                             textField: {
-                                                helperText: error ? error.message : null,
-                                                margin:'normal'
+                                                helperText:error ? error.message : null,
+                                                error: !!error,
+                                                margin:'normal',  
                                             },
                                         }}
-                                        maxDate={dayjs(new Date())} />
+                                       
+                                    
+                                        maxDate={dayjs(new Date())} 
+                            />
                         </>
-
+ 
                     )}
-                />
-            </LocalizationProvider>
+                    />
+                    </LocalizationProvider>
+            
 
     )
 }
