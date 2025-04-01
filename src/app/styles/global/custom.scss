@@ -19,7 +19,7 @@ body {
 .body__root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 ul {
@@ -37,11 +37,11 @@ a {
   padding: 0;
   width: 100%;
 
-  @media (max-width: 1295px)  {
+  @media (max-width: 1295px) {
     padding: 0 43px;
   }
 
-  @media (max-width: 759px)  {
+  @media (max-width: 759px) {
     padding: 0 20px;
   }
 }

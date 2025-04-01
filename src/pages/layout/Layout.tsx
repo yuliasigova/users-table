@@ -14,7 +14,6 @@ export function Layout(): JSX.Element {
         </nav>
       </header>
       <Outlet />
-      <footer className={'footer'} />
     </div>
   );
 }
